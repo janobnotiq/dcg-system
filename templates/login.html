@@ -83,7 +83,8 @@
 
     <div class="login-container">
         <h2>Tizimga Kirish</h2>
-        <form action="/login" method="POST">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
             <label for="username">Foydalanuvchi nomi</label>
             <input type="text" id="username" name="username" required>
 
