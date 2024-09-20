@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bosh sahifa</title>
+    <title>Deklaratsiya Muvaffaqiyatli Qo'shildi</title>
     <style>
         /* Umumiy body styling */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f9;
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -66,64 +65,73 @@
                 display: block;
                 text-align: left;
             }
-
-            .navbar .user-info {
-                float: none;
-                text-align: center;
-            }
         }
 
-        /* Sahifa markaziga joylashtirish */
+        /* Sahifa markazidagi konteyner */
         .container {
             text-align: center;
             background-color: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
         }
 
-        /* Asosiy sarlavha stylingi */
+        /* Asosiy sarlavha */
         h1 {
-            color: #4CAF50;
-            font-size: 2.5rem;
+            color: #28a745;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
         }
 
-        /* Link tugmachalari stylingi */
+        /* Muvaffaqiyatli xabar */
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* Boshqa sahifaga o'tish tugmasi */
         a {
             text-decoration: none;
             color: white;
             background-color: #007BFF;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 5px;
-            margin: 10px 0;
-            display: inline-block;
             font-size: 1rem;
+            display: inline-block;
             transition: background-color 0.3s ease;
         }
 
-        /* Hover holatidagi tugma stylingi */
+        /* Hover holatidagi tugma */
         a:hover {
             background-color: #0056b3;
         }
 
-        /* Tizimdan chiqish tugmasining maxsus stylingi */
-        .logout-btn {
-            background-color: #d9534f;
+        /* Qayta deklaratsiya qo'shish tugmasi uchun qo'shimcha rang */
+        .add-more-btn {
+            background-color: #28a745;
+            margin-left: 10px;
         }
 
-        .logout-btn:hover {
-            background-color: #c9302c;
+        .add-more-btn:hover {
+            background-color: #218838;
         }
 
         /* Mobil moslashuv */
         @media (max-width: 600px) {
             h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
             }
 
             a {
                 font-size: 0.9rem;
-                padding: 8px 16px;
+                padding: 10px 20px;
             }
         }
     </style>
@@ -135,14 +143,11 @@
         <a href="">Kompaniya qo'shish</a>
         <a href="">Favqulodda deklaratsiyalar</a>
     </div>
-    <h1>Xush kelibsiz, {{user.first_name}} {{user.last_name}}!</h1>
-    <br>
-    <a href="{% url 'logout' %}">
-        Tizimdan chiqish
-    </a>
-    <br>
-    <a href="{% url 'add-declaration' %}">
-        Deklaratsiya qo'shish
-    </a>
+    <div class="container">
+        <h1>Muvaffaqiyatli!</h1>
+        <p>Sizning deklaratsiyangiz muvaffaqiyatli qo'shildi.</p>
+        <a href="{% url 'home' %}">Bosh sahifaga qaytish</a>
+        <a href="{% url 'add-declaration' %}" class="add-more-btn">Yana deklaratsiya qo'shish</a>
+    </div>
 </body>
 </html>

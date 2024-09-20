@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bosh sahifa</title>
+    <title>Deklaratsiya qo'shish</title>
     <style>
         /* Umumiy body styling */
         body {
@@ -66,66 +66,86 @@
                 display: block;
                 text-align: left;
             }
-
-            .navbar .user-info {
-                float: none;
-                text-align: center;
-            }
         }
+        /* Umumiy form styling */
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-        /* Sahifa markaziga joylashtirish */
-        .container {
-            text-align: center;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+/* Input va select qutilarining stylingi */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #fff;
+}
 
-        /* Asosiy sarlavha stylingi */
-        h1 {
-            color: #4CAF50;
-            font-size: 2.5rem;
-        }
+/* Label stylingi */
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    color: #333;
+}
 
-        /* Link tugmachalari stylingi */
-        a {
-            text-decoration: none;
-            color: white;
-            background-color: #007BFF;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin: 10px 0;
-            display: inline-block;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
+/* Submit tugmasining stylingi */
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
 
-        /* Hover holatidagi tugma stylingi */
-        a:hover {
-            background-color: #0056b3;
-        }
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
 
-        /* Tizimdan chiqish tugmasining maxsus stylingi */
-        .logout-btn {
-            background-color: #d9534f;
-        }
+/* Error xabarlarining stylingi */
+ul.errorlist {
+    color: #d9534f;
+    font-size: 14px;
+    list-style: none;
+    padding-left: 0;
+}
 
-        .logout-btn:hover {
-            background-color: #c9302c;
-        }
+ul.errorlist li {
+    margin-top: -10px;
+}
 
-        /* Mobil moslashuv */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
+/* Inputlarda xatolik holati */
+input:invalid {
+    border-color: #d9534f;
+}
 
-            a {
-                font-size: 0.9rem;
-                padding: 8px 16px;
-            }
-        }
+/* Fokus holatidagi inputlar */
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+    h2{
+        margin-top: 500px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
     </style>
 </head>
 <body>
@@ -134,15 +154,13 @@
         <a href="">Jarayondagi deklaratsiyalar</a>
         <a href="">Kompaniya qo'shish</a>
         <a href="">Favqulodda deklaratsiyalar</a>
+        <a href="{% url 'home' %}">Bosh sahifaga</a>
     </div>
-    <h1>Xush kelibsiz, {{user.first_name}} {{user.last_name}}!</h1>
-    <br>
-    <a href="{% url 'logout' %}">
-        Tizimdan chiqish
-    </a>
-    <br>
-    <a href="{% url 'add-declaration' %}">
-        Deklaratsiya qo'shish
-    </a>
+    <h2>Deklaratsiya qo'shish</h2>
+    <form action="{% url 'add-declaration' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Saqlash</button>
+    </form>
 </body>
 </html>
