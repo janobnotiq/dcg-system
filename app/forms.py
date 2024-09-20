@@ -1,5 +1,5 @@
 from django import forms
-from .models import Declaration
+from .models import Declaration, Company
 
 
 class DeclarationForm(forms.ModelForm):
@@ -18,3 +18,9 @@ class DeclarationForm(forms.ModelForm):
             "quantity",
             "status",
         ]
+
+
+class CompanyForm(forms.ModelForm):
+    class Meta:
+        model = Company
+        fields = ["name","phone"]

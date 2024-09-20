@@ -130,9 +130,9 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="">Deklaratsiyalarim</a>
+        <a href="{% url 'my-declarations' %}">Deklaratsiyalarim</a>
         <a href="">Jarayondagi deklaratsiyalar</a>
-        <a href="">Kompaniya qo'shish</a>
+        <a href="{% url 'add-company' %}">Kompaniya qo'shish</a>
         <a href="">Favqulodda deklaratsiyalar</a>
     </div>
     <h1>Xush kelibsiz, {{user.first_name}} {{user.last_name}}!</h1>

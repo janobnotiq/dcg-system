@@ -16,8 +16,8 @@ class Company(BaseModel):
 
 class Declaration(BaseModel):
     class Status(models.TextChoices):
-        FINISHED = "F", "Finished"
-        IN_PROCESS = "I", "In process"
+        FINISHED = "FINISHED", "Finished"
+        IN_PROCESS = "IN_PROCESS", "In process"
 
     
     class Modes(models.TextChoices):
@@ -36,7 +36,7 @@ class Declaration(BaseModel):
     custom_price = models.DecimalField(max_digits=10,decimal_places=2,null=True, blank=True)
     factor_price = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
     quantity = models.IntegerField()
-    status = models.CharField(max_length=1,choices=Status.choices)
+    status = models.CharField(max_length=15,choices=Status.choices)
 
     def __str__(self) -> str:
         return f"{self.declarant.first_name} {self.declarant.last_name}'s declaration"
