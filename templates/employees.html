@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xodimlar ro'yxati</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .employee-list {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .employee {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .employee:last-child {
+            border-bottom: none;
+        }
+
+        .employee img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+
+        .employee-details {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .employee-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .employee-position {
+            color: #555;
+        }
+
+        .employee-contact {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .employee-contact a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .employee-contact a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobil moslashuv */
+        @media (max-width: 600px) {
+            .employee {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .employee-contact {
+                text-align: left;
+                margin-top: 10px;
+            }
+        }
+
+        /* Hover holatidagi tugma stylingi */
+        a:hover {
+            color: red;
+        }
+        .to-home {
+            width: 40vh;
+            height: 10%;
+            text-align: center;
+            padding-top: 63px;
+            font-weight: bold;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Xodimlar ro'yxati</h1>
+
+    <div class="employee-list">
+        {% for employee in employees %}
+        <div class="employee">
+            <!-- Xodim rasmi -->
+            <img src="" alt="{{ employee.first_name }}">
+            
+            <!-- Xodim haqida tafsilotlar -->
+            <div class="employee-details">
+                <p class="employee-name">{{ employee.first_name }}</p>
+                <p class="employee-position">{{ employee.last_name }}</p>
+            </div>
+            
+            <!-- Xodim bilan bog'lanish -->
+            <div class="employee-contact">
+                <p>Telegram: <a href="https://t.me/{{employee.username}}">{{ employee.username }}</a></p>
+                <p>Email: <a href="mailto:{{ employee.email }}">{{ employee.email }}</a></p>
+            </div>
+        </div>
+        {% endfor %}
+        <a class="to-home" href="{% url 'home' %}">
+            Bosh sahifaga
+        </a>
+    </div>
+</body>
+</html>

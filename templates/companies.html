@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompaniyalar ro'yxati</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .company-list {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .company {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .company:last-child {
+            border-bottom: none;
+        }
+
+        .company-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .company-phone a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .company-phone a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobil moslashuv */
+        @media (max-width: 600px) {
+            .company {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .company-phone {
+                margin-top: 10px;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: inline-block;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover holatidagi tugma stylingi */
+        a:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Kompaniyalar ro'yxati</h1>
+
+    <!-- Qidiruv paneli -->
+    <div class="search-bar">
+        <input type="text" placeholder="Kompaniya nomini qidiring..." id="companySearch">
+    </div>
+
+    <!-- Kompaniyalar ro'yxati -->
+    <div class="company-list">
+        {% for company in companies %}
+        <div class="company">
+            <!-- Kompaniya nomi -->
+            <p class="company-name">{{ company.name }}</p>
+            
+            <!-- Kompaniya telefon raqami -->
+            <div class="company-phone">
+                <p>Telefon: {{ company.phone }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <a href="{% url 'home' %}">
+            Bosh sahifaga
+        </a>
+    </div>
+
+    <script>
+        // Qidiruv funksiyasi
+        document.getElementById('companySearch').addEventListener('keyup', function() {
+            let searchValue = this.value.toLowerCase();
+            let companies = document.querySelectorAll('.company');
+
+            companies.forEach(function(company) {
+                let companyName = company.querySelector('.company-name').textContent.toLowerCase();
+                if (companyName.includes(searchValue)) {
+                    company.style.display = '';
+                } else {
+                    company.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
