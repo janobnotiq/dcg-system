@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deklaratsiyani yangilash</title>
+    <style>
+            body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar {
+        background-color: #f8f9fa;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-brand {
+        font-size: 24px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .navbar-links {
+        display: flex;
+    }
+
+    .nav-link {
+        margin-left: 15px;
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+        color: #0056b3;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="">Deklaratsiyalar</a>
+        <div class="navbar-links">
+            <a class="nav-link" href="{% url 'home' %}">Bosh sahifaga</a>
+            <a class="nav-link" href="{% url 'my-declarations' %}">Deklaratsiyalarim</a>
+            <a class="nav-link" href="{% url 'in-process' %}">Ortga</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Deklaratsiyani yangilash</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn">Yangilash</button>
+        </form>
+    </div>
+</body>
+</html>

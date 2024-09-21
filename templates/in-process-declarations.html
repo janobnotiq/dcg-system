@@ -84,6 +84,7 @@
                     <p>{{declaration.customs_mode}}</p>
                     <p>{{declaration.date_recorded}}</p>
                     <p style="color: red;font-weight: bold;">{{declaration.status}}</p>
+                    <a href="{% url 'update-declaration' declaration.id %}">Deklaratsiyani yangilash</a>
                 </div>
             {% endfor %}
         {% else %}
