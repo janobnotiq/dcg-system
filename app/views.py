@@ -121,7 +121,7 @@ class DeclarationReportView(View):
 
         return render(request, 'declarant-report.html', {
             'declarations': declarations,
-            'soni': declarations.count(),
+            'count': declarations.count(),
             'declarant': declarant,
         })
 

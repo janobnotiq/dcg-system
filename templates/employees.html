@@ -111,12 +111,11 @@
         {% for employee in employees %}
         <div class="employee">
             <!-- Xodim rasmi -->
-            <img src="" alt="{{ employee.first_name }}">
+            <img src="/media/profil.jpg" alt="{{ employee.first_name }}">
             
             <!-- Xodim haqida tafsilotlar -->
             <div class="employee-details">
-                <p class="employee-name">{{ employee.first_name }}</p>
-                <p class="employee-position">{{ employee.last_name }}</p>
+                <p class="employee-name">{{ employee.first_name }} {{employee.last_name}}</p>
                 <a href="{% url 'declarant-report' employee.id %}">Hisobot</a>
             </div>
             

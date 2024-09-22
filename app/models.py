@@ -40,3 +40,6 @@ class Declaration(BaseModel):
 
     def __str__(self) -> str:
         return f"{self.declarant.first_name} {self.declarant.last_name}'s declaration"
+    
+    class Meta:
+        ordering = ["-updated_at",]
