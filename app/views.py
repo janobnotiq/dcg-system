@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.utils import timezone
 from django.urls import reverse_lazy
 from django.contrib.auth import logout
@@ -110,6 +111,13 @@ class DeclarationReportView(View):
         # Foydalanuvchi ID'si bilan deklaratsiyalarni olish
         declarant = User.objects.filter(id=declarant_id).last()
         declarations = Declaration.objects.filter(declarant=declarant,status=Declaration.Status.FINISHED)
+        from datetime import datetime
+
+        for declaration in declarations:
+            if isinstance(declaration.updated_at, str):
+                declaration.updated_at = datetime.fromisoformat(declaration.updated_at)
+            else:
+                declaration.updated_at = declaration.updated_at  # Agar bu allaqachon datetime bo'lsa
 
         return render(request, 'declarant-report.html', {
             'declarations': declarations,
@@ -117,20 +125,29 @@ class DeclarationReportView(View):
             'declarant': declarant,
         })
 
-    def post(self, request, declarant_id):
-        declarant = User.objects.filter(id=declarant_id).last()
+class DeclarationFilterView(View):
+    def post(self, request, username):
+        declarant = User.objects.filter(username=username).last()
         start_date = request.POST.get('start_date')
         end_date = request.POST.get('end_date')
+        if isinstance(start_date, str):
+            start_date = datetime.fromisoformat(start_date)
+
+        if isinstance(end_date, str):
+            end_date = datetime.fromisoformat(end_date)
 
         # Foydalanuvchi ID'si bilan sanalar oralig'idagi deklaratsiyalarni olish
         declarations = Declaration.objects.filter(
             declarant=declarant,
-            updated_at=[start_date, end_date],
+            updated_at__gte=start_date,
+            updated_at__lte=end_date,
             status=Declaration.Status.FINISHED,
         )
 
-        return render(request, 'declarant-report.html', {
+        return render(request, 'declarant-report-filter.html', {
             'declarations': declarations,
-            'soni': declarations.count(),
+            'count': declarations.count(),
             'declarant': declarant,
+            "start_date": start_date.date(),
+            "end_date": end_date.date(),
         })
