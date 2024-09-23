@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from core.models import BaseModel
@@ -43,3 +44,20 @@ class Declaration(BaseModel):
     
     class Meta:
         ordering = ["-updated_at",]
+
+
+
+# Har bir xodimning tanlangan oydagi deklaratsiyalar sonini hisoblaydigan metod
+def declaration_count(self, month=None):
+    # Hozirgi oyni olish (agar hech narsa berilmagan bo'lsa)
+    if month is None:
+        month = datetime.now().month
+    
+    # Tanlangan oydagi deklaratsiyalarni sanash (updated_at bo'yicha filtrlash)
+    return Declaration.objects.filter(
+        declarant=self,               # `self` - bu xodim (user)
+        updated_at__month=month      # `updated_at` bo'yicha oy filtr
+    ).count()
+
+# Methodni User modeliga qo'shamiz
+User.add_to_class("declaration_count", declaration_count)

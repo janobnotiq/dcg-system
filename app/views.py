@@ -82,8 +82,15 @@ def in_process_declarations(request):
 @login_required
 def employees_list(request):
     if request.user.is_superuser:
+        current_month = request.GET.get('month', datetime.now().month)
         employees = User.objects.filter(is_staff=False)
-        return render(request,"employees.html",{"employees":employees})
+        for employee in employees:
+            employee.declaration_count = employee.declaration_count(month=current_month)
+
+        return render(request,"employees.html",{
+            "employees":employees,
+            "current_month": datetime.today().month,
+            })
     else:
         employees = User.objects.filter(id=request.user.pk)
         return render(request,"employees.html",{"employees":employees})
