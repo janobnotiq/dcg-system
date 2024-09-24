@@ -99,7 +99,19 @@ def employees_list(request):
 @login_required
 def companies_list(request):
     companies = Company.objects.all()
-    return render(request,"companies.html",{"companies":companies})
+    selected_month = request.GET.get('month', datetime.now().month)
+
+    for company in companies:
+            company.declaration_count = company.declaration_count(month=selected_month)
+
+    return render(
+        request,
+        "companies.html",
+        {
+            "companies":companies,
+            "current_month": int(selected_month) if selected_month else datetime.now().month,
+            }
+            )
 
 # deklaratsiyaning statusini yangilash
 class DeclarationUpdateView(LoginRequiredMixin,UpdateView):

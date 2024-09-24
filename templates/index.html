@@ -92,7 +92,7 @@
         a {
             text-decoration: none;
             color: white;
-            background-color: #007BFF;
+            background-color: none;
             padding: 10px 20px;
             border-radius: 5px;
             margin: 10px 0;
@@ -107,14 +107,25 @@
         }
 
         /* Tizimdan chiqish tugmasining maxsus stylingi */
+        
+
         .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            text-decoration: none;
+            color: white;
             background-color: #d9534f;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
         }
 
+        /* Hover holatidagi logout tugmasi */
         .logout-btn:hover {
-            background-color: #c9302c;
+            background-color: #b74845;
         }
-
         /* Mobil moslashuv */
         @media (max-width: 600px) {
             h1 {
@@ -130,10 +141,15 @@
         .for-boss {
             width: 40vh;
             height: 10%;
+            background-color: #007BFF;
             text-align: center;
             padding-top: 63px;
             font-weight: bold;
             font-size: larger;
+        }
+
+        .btns {
+            background-color: #007BFF;
         }
     </style>
 </head>
@@ -141,7 +157,7 @@
     {% if user.is_superuser %}
         <a class="for-boss" href="{% url 'employees' %}">Xodimlar</a>
         <a class="for-boss" href="{% url 'companies' %}">Kompaniyalar</a>
-        <a class="for-boss" href="{% url 'logout' %}">
+        <a class="logout-btn" href="{% url 'logout' %}">
             Tizimdan chiqish
         </a>
     {% else %}
@@ -149,15 +165,12 @@
             <a href="{% url 'my-declarations' %}">Deklaratsiyalarim</a>
             <a href="{% url 'in-process' %}">Jarayondagi deklaratsiyalar</a>
             <a href="{% url 'add-company' %}">Kompaniya qo'shish</a>
-            <a href="">Favqulodda deklaratsiyalar</a>
+            <a href="{% url 'logout' %}">Tizimdan chiqish</a>
         </div>
         <h1>Xush kelibsiz, {{user.first_name}} {{user.last_name}}!</h1>
         <br>
-        <a href="{% url 'logout' %}">
-            Tizimdan chiqish
-        </a>
         <br>
-        <a href="{% url 'add-declaration' %}">
+        <a href="{% url 'add-declaration' %}" class="for-boss">
             Deklaratsiya qo'shish
         </a>
     {% endif %}

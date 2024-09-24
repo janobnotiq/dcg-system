@@ -10,6 +10,19 @@ class Company(BaseModel):
 
     def __str__(self) -> str:
         return self.name
+    
+    # har bir kompaniyaning oylik deklaratsiyalari sonini hisoblash
+    def declaration_count(self,month=None):
+        if month is None:
+            month = datetime.now().month
+        
+        # Tanlangan oydagi deklaratsiyalarni sanash (updated_at bo'yicha filtrlash)
+        return Declaration.objects.filter(
+            reciever=self,               # `self` - bu kompaniya
+            status=Declaration.Status.FINISHED,
+            updated_at__month=month,      # `updated_at` bo'yicha oy filtr
+            updated_at__year=datetime.today().year,
+        ).count()
 
     class Meta:
         verbose_name_plural = "Companies"
@@ -40,7 +53,7 @@ class Declaration(BaseModel):
     status = models.CharField(max_length=15,choices=Status.choices)
 
     def __str__(self) -> str:
-        return f"{self.declarant.first_name} {self.declarant.last_name}'s declaration"
+        return f"{self.declarant.first_name} {self.declarant.last_name}ning deklaratsiyasi"
     
     class Meta:
         ordering = ["-updated_at",]
@@ -56,8 +69,9 @@ def declaration_count(self, month=None):
     # Tanlangan oydagi deklaratsiyalarni sanash (updated_at bo'yicha filtrlash)
     return Declaration.objects.filter(
         declarant=self,               # `self` - bu xodim (user)
+        status=Declaration.Status.FINISHED,
         updated_at__month=month,      # `updated_at` bo'yicha oy filtr
-        updated_at__year=datetime.today().year
+        updated_at__year=datetime.today().year,
     ).count()
 
 # Methodni User modeliga qo'shamiz

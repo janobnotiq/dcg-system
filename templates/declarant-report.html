@@ -129,7 +129,7 @@
                 <tr>
                     <td>{{ declaration.number_gtd }}</td>
                     <td>{{ declaration.reciever }}</td>
-                    <td>{{ declaration.updated_at }}</td>
+                    <td>{{ declaration.updated_at|date:"d-F Y, H:i" }}</td>
                 </tr>
                 {% empty %}
                 <tr>

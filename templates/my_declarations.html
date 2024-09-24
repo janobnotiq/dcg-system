@@ -82,6 +82,7 @@
                     <p>{{declaration.number_gtd}}</p>
                     <p>{{declaration.reference_gtd}}</p>
                     <p>{{declaration.customs_mode}}</p>
+                    <b>{{ declaration.updated_at|date:"H:i" }}</b>
                     {% if declaration.status == "FINISHED" %}
                         <p style="color: rgb(6, 243, 6); font-weight: bold;">{{declaration.status}}</p>
                     {% else %}
