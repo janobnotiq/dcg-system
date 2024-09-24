@@ -56,7 +56,8 @@ def declaration_count(self, month=None):
     # Tanlangan oydagi deklaratsiyalarni sanash (updated_at bo'yicha filtrlash)
     return Declaration.objects.filter(
         declarant=self,               # `self` - bu xodim (user)
-        updated_at__month=month      # `updated_at` bo'yicha oy filtr
+        updated_at__month=month,      # `updated_at` bo'yicha oy filtr
+        updated_at__year=datetime.today().year
     ).count()
 
 # Methodni User modeliga qo'shamiz
