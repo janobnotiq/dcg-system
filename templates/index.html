@@ -166,8 +166,8 @@
             <a href="{% url 'in-process' %}">Jarayondagi deklaratsiyalar</a>
             <a href="{% url 'add-company' %}">Kompaniya qo'shish</a>
             <a href="{% url 'logout' %}">Tizimdan chiqish</a>
+            <a href="#">Xush kelibsiz, {{user.first_name}} {{user.last_name}}!</a>
         </div>
-        <h1>Xush kelibsiz, {{user.first_name}} {{user.last_name}}!</h1>
         <br>
         <br>
         <a href="{% url 'add-declaration' %}" class="for-boss">
