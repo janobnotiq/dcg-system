@@ -96,29 +96,29 @@
         a {
             text-decoration: none;
             color: white;
-            background-color: #007BFF;
             padding: 12px 25px;
             border-radius: 5px;
             font-size: 1rem;
             display: inline-block;
             transition: background-color 0.3s ease;
         }
-
-        /* Hover holatidagi tugma */
-        a:hover {
-            background-color: #0056b3;
+        
+        
+        .navbuttons {
+            background-color: none;
+            transition: background-color 0.25s;
         }
-
         /* Qayta deklaratsiya qo'shish tugmasi uchun qo'shimcha rang */
         .add-more-btn {
             background-color: #28a745;
             margin-left: 10px;
         }
-
+        
         .add-more-btn:hover {
             background-color: #218838;
         }
-
+        
+        /* background-color: #007BFF; */
         /* Mobil moslashuv */
         @media (max-width: 600px) {
             h1 {
@@ -138,15 +138,14 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="">Deklaratsiyalarim</a>
-        <a href="">Jarayondagi deklaratsiyalar</a>
-        <a href="">Kompaniya qo'shish</a>
-        <a href="">Favqulodda deklaratsiyalar</a>
+        <a href="{% url 'my-declarations' %}" class="navbuttons">Deklaratsiyalarim</a>
+        <a href="{% url 'in-process' %}" class="navbuttons">Jarayondagi deklaratsiyalar</a>
+        <a href="{% url 'add-company' %}" class="navbuttons">Kompaniya qo'shish</a>
     </div>
     <div class="container">
         <h1>Muvaffaqiyatli!</h1>
         <p>Sizning deklaratsiyangiz muvaffaqiyatli qo'shildi.</p>
-        <a href="{% url 'home' %}">Bosh sahifaga qaytish</a>
+        <a href="{% url 'home' %}" style="background-color: #007BFF;">Bosh sahifaga qaytish</a>
         <a href="{% url 'add-declaration' %}" class="add-more-btn">Yana deklaratsiya qo'shish</a>
     </div>
 </body>

@@ -66,7 +66,6 @@ def declaration_list_view(request):
     today = timezone.now().date()
     declarations = Declaration.objects.filter(
         declarant=request.user,
-        updated_at__date=today
         )
     for i in declarations:
         print(i.updated_at)

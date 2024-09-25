@@ -42,7 +42,7 @@ class Declaration(BaseModel):
     declarant = models.ForeignKey(User,on_delete=models.CASCADE)
     number_gtd = models.CharField(max_length=256,verbose_name="nomer gtd")
     reference_gtd = models.CharField(max_length=256)
-    date_recorded = models.CharField(max_length=256)
+    date_recorded = models.DateField(verbose_name="qayd etilgan sana")
     customs_mode = models.CharField(max_length=10,choices=Modes.choices)
     sender = models.CharField(max_length=256)
     reciever = models.ForeignKey(Company,on_delete=models.CASCADE)

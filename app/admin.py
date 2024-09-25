@@ -10,4 +10,5 @@ class CompanyAdmin(ModelAdmin):
 
 @admin.register(Declaration)
 class DeclarationAdmin(ModelAdmin):
+    list_display = ["declarant__first_name","declarant__last_name","status","updated_at"]
     ordering = ["-created_at",]

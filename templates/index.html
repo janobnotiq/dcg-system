@@ -157,6 +157,7 @@
     {% if user.is_superuser %}
         <a class="for-boss" href="{% url 'employees' %}">Xodimlar</a>
         <a class="for-boss" href="{% url 'companies' %}">Kompaniyalar</a>
+        <a class="for-boss" href="{% url 'admin:index' %}">Admin sahifasi</a>
         <a class="logout-btn" href="{% url 'logout' %}">
             Tizimdan chiqish
         </a>
