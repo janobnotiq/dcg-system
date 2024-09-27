@@ -67,8 +67,9 @@ def declaration_list_view(request):
     declarations = Declaration.objects.filter(
         declarant=request.user,
         )
-    for i in declarations:
-        print(i.updated_at)
+    if declarations.count > 20:
+        declarations = declarations[:20]
+    
     return render(request,"my_declarations.html",{"declarations":declarations})
 
 # jarayondagi deklaratsiyalar
