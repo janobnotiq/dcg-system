@@ -73,9 +73,11 @@
             font-size: 1.2rem;
             font-weight: bold;
             color: #007BFF;
+            background-color: none;
             flex-grow: 1;
             transition: color 0.25s;
             cursor: pointer;
+            text-decoration: none;
         }
 
         .company-name:hover {
@@ -99,7 +101,7 @@
             }
         }
 
-        a {
+        .tugma {
             text-decoration: none;
             color: white;
             background-color: #007BFF;
@@ -112,7 +114,7 @@
         }
 
         /* Hover holatidagi tugma stylingi */
-        a:hover {
+        .tugma:hover {
             background-color: #0056b3;
         }
 
@@ -173,7 +175,7 @@
         {% for company in companies %}
         <div class="company">
             <!-- Kompaniya nomi -->
-            <p class="company-name">{{ company.name }}</p>
+            <a href="#" class="company-name">{{ company.name }}</a>
 
             <!-- Deklaratsiyalar soni -->
             <div class="declaration-count">
@@ -181,7 +183,7 @@
             </div>
         </div>
         {% endfor %}
-        <a href="{% url 'home' %}">
+        <a class="tugma" href="{% url 'home' %}">
             Bosh sahifaga
         </a>
     </div>
