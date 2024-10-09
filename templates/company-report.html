@@ -141,14 +141,12 @@
     </style>
 </head>
 <body>
-
-    <h1>Kompaniyalar ro'yxati</h1>
-
+    <h1>{{company.name}}</h1>
     <!-- Qidiruv va select barlari -->
     <div class="search-select-bar">
 
         <!-- Oy tanlash -->
-        <form method="GET" action="{% url 'companies' %}">
+        <form method="GET" action="{% url 'company-report' company.id %}">
             <select id="month" name="month" onchange="this.form.submit()">
                 <option value="1" {% if current_month == 1 %}selected{% endif %}>Yanvar</option>
                 <option value="2" {% if current_month == 2 %}selected{% endif %}>Fevral</option>
@@ -165,7 +163,7 @@
             </select>
         </form>
     </div>
-    <h1>{{company.name}}</h1>
+    
     <!-- Kompaniyalar ro'yxati -->
     <div class="company-list">
         <div class="company">

@@ -19,6 +19,12 @@ class DeclarationForm(forms.ModelForm):
             "status",
         ]
 
+        widgets = {
+            'date_recorded': forms.DateInput(attrs={
+                'type': 'date',  # HTML5 type date, kalendardan tanlash uchun
+            }),
+        }
+
 
 class CompanyForm(forms.ModelForm):
     class Meta:

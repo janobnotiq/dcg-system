@@ -53,7 +53,6 @@ def add_company(request):
         form = CompanyForm(request.POST)
         if form.is_valid():
             company = form.save()
-            print(company.name)
             return redirect('home')  # Muvaffaqiyatli deklaratsiya uchun yo'naltirish
     else:
         form = CompanyForm()
