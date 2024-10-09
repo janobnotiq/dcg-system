@@ -146,10 +146,6 @@
 
     <!-- Qidiruv va select barlari -->
     <div class="search-select-bar">
-        <!-- Qidiruv paneli -->
-        <div class="search-bar">
-            <input type="text" placeholder="Kompaniya nomini qidiring..." id="companySearch">
-        </div>
 
         <!-- Oy tanlash -->
         <form method="GET" action="{% url 'companies' %}">
@@ -169,41 +165,40 @@
             </select>
         </form>
     </div>
-
+    <h1>{{company.name}}</h1>
     <!-- Kompaniyalar ro'yxati -->
     <div class="company-list">
-        {% for company in companies %}
         <div class="company">
             <!-- Kompaniya nomi -->
-            <a href="{% url 'company-report' company.id %}" class="company-name">{{ company.name }}</a>
+            <a href="#" class="company-name">Deklaratsiyalar</a>
 
             <!-- Deklaratsiyalar soni -->
             <div class="declaration-count">
-                {{company.declaration_count}}
+                {{declarations}}
             </div>
         </div>
-        {% endfor %}
+        <div class="company">
+            <!-- Kompaniya nomi -->
+            <a href="#" class="company-name">Kontraktlar</a>
+
+            <!-- Deklaratsiyalar soni -->
+            <div class="declaration-count">
+                {{contracts}}
+            </div>
+        </div>
+        <div class="company">
+            <!-- Kompaniya nomi -->
+            <a href="#" class="company-name">Dosmotrlar</a>
+
+            <!-- Deklaratsiyalar soni -->
+            <div class="declaration-count">
+                {{dosmotrs}}
+            </div>
+        </div>
         <a class="tugma" href="{% url 'home' %}">
             Bosh sahifaga
         </a>
     </div>
-
-    <script>
-        // Qidiruv funksiyasi
-        document.getElementById('companySearch').addEventListener('keyup', function() {
-            let searchValue = this.value.toLowerCase();
-            let companies = document.querySelectorAll('.company');
-
-            companies.forEach(function(company) {
-                let companyName = company.querySelector('.company-name').textContent.toLowerCase();
-                if (companyName.includes(searchValue)) {
-                    company.style.display = '';
-                } else {
-                    company.style.display = 'none';
-                }
-            });
-        });
-    </script>
 
 </body>
 </html>
