@@ -6,17 +6,13 @@ class ContractForm(forms.ModelForm):
     class Meta:
         model = Contract
         fields = [
-            "number_gtd",
-            "reference_gtd",
+            "product",
+            "transport_service",
             "date_recorded",
-            "customs_mode",
-            "sender",
+            "contract_no",
+            "seller",
+            "carrier",
             "reciever",
-            "country",
-            "custom_price",
-            "factor_price",
-            "quantity",
-            "status",
         ]
 
         widgets = {
@@ -30,21 +26,19 @@ class DosmotrForm(forms.ModelForm):
     class Meta:
         model = Dosmotr
         fields = [
-            "number_gtd",
-            "reference_gtd",
-            "date_recorded",
-            "customs_mode",
-            "sender",
             "reciever",
-            "country",
-            "custom_price",
-            "factor_price",
-            "quantity",
-            "status",
+            "transport_number",
+            "product",
+            "weight",
+            "arrived_date",
+            "leaving_date",
         ]
 
         widgets = {
-            'date_recorded': forms.DateInput(attrs={
+            'arrived_date': forms.DateInput(attrs={
+                'type': 'date',  # HTML5 type date, kalendardan tanlash uchun
+            }),
+            'leaving_date': forms.DateInput(attrs={
                 'type': 'date',  # HTML5 type date, kalendardan tanlash uchun
             }),
         }
